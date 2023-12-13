@@ -164,6 +164,51 @@ html {
     align-items: center;
 }
 
+/* Navi mobile &tablet */
+.overlay-mobile{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(0,0,0, 0.7);
+}
+.nav-mobile {
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: 300px;
+    max-width: 100%;
+    background-color: #fff;
+    padding-top: 16px;
+    transform: translateX(-400px);
+    opacity: 0;
+}
+
+.nav-mobile .list-menu{
+    padding-top: 32px;
+}
+.nav-mobile a {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 16px 0px;
+    color: #282828;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+    line-height:24px;
+}
+.nav-mobile a:hover, .close-btn:hover {
+    background-color: #dbdbdb;
+}
+
 /* SLIDER */
 #slider {
     position: relative;
@@ -360,7 +405,7 @@ html {
     font-size: 20px;
     font-weight: 500;
 }
-.modal .close-btn{
+.close-btn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -457,7 +502,6 @@ html {
 @media only screen and (max-width: 63.9375em){
     
 }
-
 /* Mobile: <740px */
 @media only screen and (max-width: 46.1875em){
     #main {
@@ -513,6 +557,23 @@ html {
     }
     .map{
         padding-top: 120%;
+    }
+    /* Hiệu ứng đóng mở menu mobile */
+    .open-menu-input:checked ~ .overlay-mobile{
+        display: flex;
+    }
+    .open-menu-input:checked ~ .nav-mobile{
+        transform: translateX(0px);
+        opacity: 1;
+        transition: transform ease 0.5s, opacity ease 0.8s;
+    }
+    .open-menu-input:not(:checked) ~ .nav-mobile{
+        transform: translateX(-400px);
+        opacity: 0;
+        transition: transform ease 0.5s, opacity ease 0.8s;
+    }
+    .nav-mobile.hidenav {
+        transform: translateX(-200px);
     }
     
 }

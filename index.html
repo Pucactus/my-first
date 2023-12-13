@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The band</title>
-    <link rel="icon" type="image/x-icon" href="https://www.oxfordlearnersdictionaries.com/external/images/favicon.ico?version=2.3.52">
+    <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicons/favicon.svg">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@1" />
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap">
@@ -15,9 +15,9 @@
        <div id="header">
         <!-- Bắt đầu nav  -->
          <ul id="nav">
-            <div class="menu-btn">
+            <label for="open-menu" class="menu-btn">
                 <span class="material-symbols-outlined" style="font-size: 20px;"> menu </span>
-            </div>
+            </label>
             <img class="logo" src="./assets/img/Daco_3914429.png" alt="">
             <li><a href="#">Home</a></li>
             <li><a href="#band">Band</a></li>
@@ -43,7 +43,7 @@
         
         <!-- Kết thúc search  -->
        </div>
-
+       
        <!-- Slider -->
        <div id="slider">
          <div class="text-onslider">
@@ -157,11 +157,31 @@
             <a href=""><i class="fa-brands fa-linkedin"></i></a>
             <a href=""><i class="fa-brands fa-google"></i></a>
         </div>
-        <p class="item-1col">Powered by <a href="">w3.css</a></p>
+        <p class="item-1col">Powered by <a href="https://www.linkedin.com/in/pucactus/">pucactus</a></p>
        </div>
 
     </div>
-
+    <!-- Menu tablet & mobile -->
+    <input class="open-menu-input" id="open-menu" type="checkbox" hidden>
+    <label for="open-menu" class="overlay-mobile"> </label>
+    <div class="nav-mobile js-nav-mobile">
+      <label for="open-menu" class="close-btn">
+          <span class="material-symbols-outlined">close</span>
+      </label>
+      <div class="list-menu">
+         <a class="js-menu-mobile" href="#">Home</a>
+         <a class="js-menu-mobile" href="#band">Band</a>
+         <a class="js-menu-mobile" href="#tour">Tour</a>
+         <a class="js-menu-mobile" href="#contact">Contact</a>
+         <a class="js-menu-mobile" href="">
+          More 
+          <span class="nav-more material-symbols-outlined"> chevron_right </span>
+         </a>
+      </div>
+      
+    </div>
+    <!-- Kết thúc menu tablet & mobile -->
+    <!-- Modal -->
     <div class="modal js-modal">
         <div class="modal-container js-modal-container">
             <header class="modal-header text-white">
@@ -201,6 +221,8 @@
         const modal = document.querySelector('.js-modal')
         const modalClose = document.querySelector('.js-close-btn')
         const modalContainer = document.querySelector('.js-modal-container')
+        const menuMobiles = document.querySelectorAll('.js-menu-mobile')
+        const navMobile = document.querySelector('.js-nav-mobile')
 
         //HÀM THAY ĐỔI CLASS 
         function ShowPopupTicket() {
@@ -209,6 +231,9 @@
         function HidePopupTicket() {
             modal.classList.remove('open')
         }
+        function HideMenu(){
+            navMobile.classList.add('hidenav')
+        }
 
         //NGHE EVENT VÀ ÁP DỤNG HÀM
         for (const buyBtn of buyBtns){
@@ -216,6 +241,10 @@
         }
         modalClose.addEventListener('click', HidePopupTicket)
         modal.addEventListener('click', HidePopupTicket)
+        
+        for (const menuMobile of menuMobiles){
+            menuMobile.addEventListener('click',HideMenu)
+        }
 
         //CHẶN EVENT TỪ CÁC LỚP DƯỚI
         modalContainer.addEventListener('click',function(event){ event.stopPropagation() })

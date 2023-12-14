@@ -15,7 +15,7 @@
        <div id="header">
         <!-- Bắt đầu nav  -->
          <ul id="nav">
-            <label for="open-menu" class="menu-btn">
+            <label for="open-menu" class="menu-btn js-menu-btn">
                 <span class="material-symbols-outlined" style="font-size: 20px;"> menu </span>
             </label>
             <img class="logo" src="./assets/img/Daco_3914429.png" alt="">
@@ -163,9 +163,9 @@
     </div>
     <!-- Menu tablet & mobile -->
     <input class="open-menu-input" id="open-menu" type="checkbox" hidden>
-    <label for="open-menu" class="overlay-mobile"> </label>
+    <label for="open-menu" class="overlay-mobile js-overlay-mobile"> </label>
     <div class="nav-mobile js-nav-mobile">
-      <label for="open-menu" class="close-btn">
+      <label for="open-menu" class="close-btn js-close-menu">
           <span class="material-symbols-outlined">close</span>
       </label>
       <div class="list-menu">
@@ -173,12 +173,11 @@
          <a class="js-menu-mobile" href="#band">Band</a>
          <a class="js-menu-mobile" href="#tour">Tour</a>
          <a class="js-menu-mobile" href="#contact">Contact</a>
-         <a class="js-menu-mobile" href="">
+         <a class="js-menu-mobile" href="#">
           More 
           <span class="nav-more material-symbols-outlined"> chevron_right </span>
          </a>
       </div>
-      
     </div>
     <!-- Kết thúc menu tablet & mobile -->
     <!-- Modal -->
@@ -221,8 +220,12 @@
         const modal = document.querySelector('.js-modal')
         const modalClose = document.querySelector('.js-close-btn')
         const modalContainer = document.querySelector('.js-modal-container')
+
         const menuMobiles = document.querySelectorAll('.js-menu-mobile')
         const navMobile = document.querySelector('.js-nav-mobile')
+        const overlayMobile = document.querySelector('.js-overlay-mobile')
+        const menuBtn = document.querySelector('.js-menu-btn')
+        const menuClose = document.querySelector('.js-close-menu')
 
         //HÀM THAY ĐỔI CLASS 
         function ShowPopupTicket() {
@@ -231,8 +234,14 @@
         function HidePopupTicket() {
             modal.classList.remove('open')
         }
+
+        function OpenMenu(){
+            navMobile.classList.add('open')
+            overlayMobile.classList.add('open')
+        }
         function HideMenu(){
-            navMobile.classList.add('hidenav')
+            navMobile.classList.remove('open')
+            overlayMobile.classList.remove('open')
         }
 
         //NGHE EVENT VÀ ÁP DỤNG HÀM
@@ -242,9 +251,12 @@
         modalClose.addEventListener('click', HidePopupTicket)
         modal.addEventListener('click', HidePopupTicket)
         
+        menuBtn.addEventListener('click',OpenMenu)
         for (const menuMobile of menuMobiles){
             menuMobile.addEventListener('click',HideMenu)
         }
+        menuClose.addEventListener('click',HideMenu)
+        overlayMobile.addEventListener('click',HideMenu)
 
         //CHẶN EVENT TỪ CÁC LỚP DƯỚI
         modalContainer.addEventListener('click',function(event){ event.stopPropagation() })

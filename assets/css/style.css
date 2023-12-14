@@ -188,6 +188,9 @@ html {
     transform: translateX(-400px);
     opacity: 0;
 }
+.nav-mobile.hidenav, .overlay-mobile.hidenav {
+    display: none!important;
+}
 
 .nav-mobile .list-menu{
     padding-top: 32px;
@@ -236,7 +239,7 @@ html {
 #content {
 }
 #content .content-section {
-    width: 60%;
+    width: 900px;
     padding: 100px 0px;
     margin: auto;
 }
@@ -498,10 +501,7 @@ html {
 .social-list{
     margin-bottom: 16px;
 }
-/* Mobile & Tablet: <1024px */
-@media only screen and (max-width: 63.9375em){
-    
-}
+
 /* Mobile: <740px */
 @media only screen and (max-width: 46.1875em){
     #main {
@@ -509,12 +509,15 @@ html {
     }
     .item-2col{
         width: 100%;
+        max-width: 500px;
     }
     .item-3col{
         width: 100%;
+        max-width: 380px;
     }
     .list-flexbox {
         flex-direction: column;
+        align-items: center;
         gap: 16px;
         margin-top: px;
     }
@@ -551,6 +554,15 @@ html {
         margin-top: 8px;
         font-size: 14px;
     }
+    .ticket-list{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .ticket-list li{
+        width: 100%;
+        max-width: 380px;
+    }
     .infor-item{
         display: flex;
         justify-content: center;
@@ -558,29 +570,35 @@ html {
     .map{
         padding-top: 120%;
     }
-    /* Hiệu ứng đóng mở menu mobile */
-    .open-menu-input:checked ~ .overlay-mobile{
-        display: flex;
+    /* Hiệu ứng đóng mở menu mobile bằng */
+    /* .open-menu-input:checked ~ .overlay-mobile{
+        display: none;
     }
     .open-menu-input:checked ~ .nav-mobile{
         transform: translateX(0px);
         opacity: 1;
         transition: transform ease 0.5s, opacity ease 0.8s;
     }
-    .open-menu-input:not(:checked) ~ .nav-mobile{
+    .open-menu-input:checked ~ .nav-mobile{
         transform: translateX(-400px);
         opacity: 0;
         transition: transform ease 0.5s, opacity ease 0.8s;
+    } */
+    .overlay-mobile.open{
+        display: flex;
     }
-    .nav-mobile.hidenav {
-        transform: translateX(-200px);
+    .nav-mobile.open{
+        transform: translateX(0px);
+        opacity: 1;
+        transition: transform ease 0.5s, opacity ease 0.8s;
     }
     
 }
 /* Tablet: 740px -> 1023px */
 @media only screen and (min-width:46.25em) and (max-width: 63.9375em) {
     #content .content-section {
-        width: 90%;
+        width: calc(100% - 32px);
+        max-width: 900px;
     }
     #content .section-heading {
         font-size: 38px;
